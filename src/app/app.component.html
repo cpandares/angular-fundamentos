@@ -1,92 +1,10 @@
-<!--
-<h2>Eventos</h2>
 
-<button type="button" [disabled]="btnDisabled"> Enviar </button>
-<button (click)="toggleButton()">Toggle</button>
+<!-- <input type="text" [(ngModel)] = "imgText">
 
-<p> edad: {{ age }} </p>
-<button (click) = "agetIncrement()">Age ++</button>
-
-<hr>
-
-
-<h1>Hola</h1>
-
-
-<p>name: {{ name }}</p>
-<p> edad: {{ age }} </p>
-
-<hr>
-
-<button type="button" [disabled]="btnDisabled"> Enviar </button>
-
-<progress max="100" [value]="age"></progress>
-
-
-<hr>
-
-<h2>NGMODEL</h2>
-
-<p>name: {{ name }}</p>
-<input type="text" [(ngModel)]="name">
-
-
-
-<hr>
-
-<h2>NgFor</h2>
-
-<button (click)="addName()">Add Name</button>
-<input type="text" [(ngModel)]="newName">
-<ul>
-  <li *ngIf="names.length === 0">No Hay nombres</li>
-  <li *ngFor="let name of names; index as i">
-    {{i}} {{ name }}
-    <button (click)="deleteName(i)">
-      delete Name
-    </button>
-  </li>
-</ul> -->
-
-<!--
-<hr> -->
-
-<!-- <h2>NgFor OBJ</h2>
-<div class="products--grid">
-  <div *ngFor="let product of products">
-    <img [src]="product.image" alt="image" width="200">
-    <h2>{{ product.name }}</h2>
-  </div>
-
-</div> -->
-
-<h1>Form</h1>
-<form
-(ngSubmit)="onRegister()"
-  #myForm="ngForm"
->
-  <div class="input-group">
-    <label for="name">Name</label>
-    <input type="text" required  autocomplete="off" name ="name" id="name" [(ngModel)]="register.name">
-    <p>Error Message</p>
-  </div>
-
-  <div class="input-group">
-    <label for="name">Email</label>
-    <input type="email" required name="email"  autocomplete="off" id="email" [(ngModel)]="register.email">
-    <p>Error Message</p>
-  </div>
-
-  <div class="input-group">
-    <label for="name">Passsword</label>
-    <input type="password" required name="password"  autocomplete="off" id="password" [(ngModel)]="register.password">
-    <p>Error Message</p>
-  </div>
-
-  <button
-    type="submit"
-    [disabled]="myForm.invalid"
-    >
-    Submit
-  </button>
-</form>
+<app-img
+  [imgText]="imgText"
+  (imageLoaded)="onLoadedImage($event)"
+  >
+</app-img> -->
+<app-nav></app-nav>
+<app-products></app-products>
