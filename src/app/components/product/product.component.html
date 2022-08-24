@@ -1,9 +1,14 @@
 
 
+<p> Today: {{ dateAgo | timeAgo }} </p>
 <h2>{{ product.title }}</h2>
   <app-img [imgText]="product.image" alt="" ></app-img>
 
 <p>{{ product.price }}</p>
+
+<p appHighligth>
+  Description: {{ product.description }}
+</p>
 
 <button
   (click)="onAddToCart()"

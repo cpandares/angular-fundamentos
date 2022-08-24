@@ -17,6 +17,8 @@ export class ProductComponent implements OnInit {
     category: ''
   }
 
+  dateAgo : Date = new Date('2020-08-14');
+
   @Output() addedProduct = new EventEmitter<Product>()
 
   constructor() { }
