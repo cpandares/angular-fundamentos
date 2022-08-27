@@ -22,7 +22,7 @@ export class ImgComponent implements OnInit {
   }
 
   imgLoaded(){
-    console.log("log hijo")
+
     this.imageLoaded.emit(this.imgText)
   }
 

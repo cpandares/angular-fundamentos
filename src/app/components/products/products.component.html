@@ -5,12 +5,46 @@
 <p>
   Total Acumulado es: {{ totalInShoppingCart }}
 </p>
+<button (click)="create()">
+  Open
+</button>
 
 <div class="products--grid">
   <app-product
   [product]="product"
   *ngFor="let product of products"
   (addedProduct)="onAddToShoppingCart($event)"
+  (showProduct)="onShowDetail($event)"
   >
 </app-product>
 </div>
+<div class="product-detail" [class.active]="showDetail">
+  <div *ngIf="productChosen">
+    <button (click)="toggleDetailProduct()">X</button>
+
+    <h2>{{ productChosen.title}}</h2>
+    <swiper
+    [slidesPerView]="1"
+
+
+  >
+    <ng-template swiperSlide *ngFor="let img of productChosen.images">
+      <img [src]="img" alt="">
+    </ng-template>
+
+  </swiper>
+
+    <p>{{ productChosen.description }}</p>
+
+    <button (click)="updateProduct()">
+      Update
+    </button>
+    <button (click)="deleteProduct()">
+      Delete
+    </button>
+  </div>
+</div>
+
+<button  (click)="loadMore()">
+  Load MOre
+</button>
