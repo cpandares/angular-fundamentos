@@ -20,6 +20,8 @@ export class ProductsComponent implements OnInit {
   limit:number = 10;
   offset:number = 0;
 
+  statusRequest : 'loading' | 'success' | 'error' | 'init' = 'init'
+
   productChosen:Product = {
     id: '',
     title: '',
@@ -59,12 +61,19 @@ export class ProductsComponent implements OnInit {
   }
 
   onShowDetail(id:string){
-
+    this.statusRequest = 'loading';
+    this.toggleDetailProduct();
     this.productService.getProduct(id)
     .subscribe(data =>{
-      this.toggleDetailProduct();
+
       this.productChosen = data;
+      this.statusRequest = 'success';
+    }, response =>{
+
+      window.alert(response)
+      this.statusRequest = 'error';
     })
+
   }
 
   create(){

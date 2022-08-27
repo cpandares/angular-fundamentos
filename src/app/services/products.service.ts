@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode } from '@angular/common/http'
 import { Product, CreateProductDTO, UpdateProductDTO } from '../models/product.model';
+import { retry, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products';
+  private apiUrl = `${environment.API_URL}/api/products`;
 
   constructor(
     private http: HttpClient
@@ -32,6 +35,18 @@ export class ProductsService {
 
   getProduct(id:string){
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
+    .pipe(
+      catchError((error:HttpErrorResponse)=>{
+        if(error.status === 500){
+          return throwError('Ups internal error server ')
+        }
+        if(error.status === 404){
+          return throwError('Producto no encontrado')
+        }
+
+        return throwError('Error no controlado')
+      })
+    )
   }
 
   create(dto:CreateProductDTO){
